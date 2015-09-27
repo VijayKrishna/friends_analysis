@@ -7,13 +7,15 @@ import net.sf.classifier4J.summariser.SimpleSummariser;
 
 public class SeasonSummarizer {
 
-	final static File textDataStore = 
-	new File("/home/vijay/Misc_Programming/lang/freinds_analysis/data/text/");
-	File[] textFiles = textDataStore.listFiles();
+    private static final String USER_DIR = System.getProperty("user.dir");
+
+	final static File TEXT_DATA_STORE =
+	new File(USER_DIR + "/data/text/");
+	File[] textFiles = TEXT_DATA_STORE.listFiles();
 
 	public static void main(String[] args) throws FileNotFoundException {
 		SeasonSummarizer seasonSummarizer = new SeasonSummarizer();
-		Content season1 = seasonSummarizer.getSeasonContent(args[0]);
+		Content season1 = seasonSummarizer.getSeasonContent("101");
 		String summary = seasonSummarizer.summarize(season1);
 		System.out.println(summary);
 	}
