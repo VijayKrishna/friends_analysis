@@ -7,8 +7,10 @@ import java.io.PrintStream;
 
 public class BasicStats {
 
+    private static final String USER_DIR = System.getProperty("user.dir");
+
 	final static File textDataStore = 
-	new File("/home/vijay/Misc_Programming/lang/freinds_analysis/data/text/");
+	new File(USER_DIR + "/data/text/");
 	final static String joey = "Joey:";
 	final static String chandler = "Chandler:";
 	final static String ross = "Ross:";

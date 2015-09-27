@@ -1,20 +1,25 @@
-import java.util.*;
-import java.net.*;
-import java.io.*;
-import org.xml.sax.InputSource;
-import org.jsoup.*;
+import org.jsoup.Jsoup;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.Scanner;
+
+
 
 public class ExtractFrom {
-	public static void main(String[] args) throws MalformedURLException, IOException {
-		final String textDataRoot = "/home/vijay/Misc_Programming" 
-				+ "/lang/freinds_analysis/data/text/";
-		final File htmlDataStore = new File("/home/vijay/Misc_Programming/lang/freinds_analysis/data/html/");
+    private static final String USER_DIR = System.getProperty("user.dir");
+
+    public static void main(String[] args) throws IOException {
+		final String textDataRoot = USER_DIR + "/data/text/";
+		final File htmlDataStore = new File(USER_DIR + "/data/html/");
 		File[] htmlFiles = htmlDataStore.listFiles();
 		for(File htmlFile : htmlFiles) {
 			Scanner scanner = new Scanner(htmlFile);
-			
-			String name = htmlFile.getName() + ".txt";
-			PrintStream out = new PrintStream(new File(textDataRoot + name));
+            String htmlFileName = htmlFile.getName();
+            int indexOfExtension = htmlFileName.indexOf(".");
+            String textFileName = htmlFileName.substring(0, indexOfExtension) + ".txt";
+			PrintStream out = new PrintStream(new File(textDataRoot + textFileName));
    			extractText(scanner, out);
 		}  		
 	}
